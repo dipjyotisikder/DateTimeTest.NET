@@ -46,7 +46,6 @@ var rule = dhakaTimeZoneInfo.GetAdjustmentRules().FirstOrDefault();
 var daylightDelta = rule?.DaylightDelta;
 var utcDateTimeConverted = TimeZoneInfo.ConvertTimeToUtc(localDhaka, dhakaTimeZoneInfo);*/
 
-
 var australiaTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
 var australiaDatetime = "18/01/2023 17:12:00";
 var systemZones = TimeZoneInfo.GetSystemTimeZones();
@@ -59,10 +58,7 @@ var australiaDaylightDelta = australiaRule?.DaylightDelta;
 var australiaUtcDateTimeConverted = TimeZoneInfo.ConvertTimeToUtc(australiaLocal, australiaTimeZoneInfo);
 // So! Send this australiaUtcDateTimeConverted UTC time to front-end.
 
-
-
 var australiaToDhakaDateTimeConvertedFromUTC = TimeZoneInfo.ConvertTimeFromUtc(australiaUtcDateTimeConverted, dhakaTimeZoneInfo);
-
 
 // Conversion
 Console.WriteLine("");
@@ -75,7 +71,6 @@ var yesterdayDate = DateTime.Now.Date.AddDays(-1);
 
 Console.WriteLine("");
 
-
 // During user input
 void SaveLocalDateTime(string localDateTime, string systemTimezoneId)
 {
@@ -83,7 +78,6 @@ void SaveLocalDateTime(string localDateTime, string systemTimezoneId)
     // SAVE NOW localParsed IN DB
     // Save systemTimezoneId also
 };
-
 
 // During user date-time retrieval
 DateTime GetUserDateTime()
@@ -98,12 +92,13 @@ DateTime GetUserDateTime()
 // When user changes his location.
 DateTime ChangeUsersLocation(string destinationSystemTimezoneId)
 {
-    var destinationTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(destinationSystemTimezoneId);
-
     var user = new Tuple<string, DateTime, string>(item1: "dip", item2: DateTime.Now, item3: "Bangladesh Standard Time");
     var timezoneInfo = TimeZoneInfo.FindSystemTimeZoneById(user.Item3);
     var utcDateTime = TimeZoneInfo.ConvertTimeToUtc(user.Item2, timezoneInfo);
-    var destinationDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, destinationTimeZoneInfo);
+    var destinationDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, TimeZoneInfo.FindSystemTimeZoneById(destinationSystemTimezoneId));
+
+    //var destinationDateTimeAlternative = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(user.Item2, destinationSystemTimezoneId);
+
     return destinationDateTime;
 };
 
