@@ -5,7 +5,11 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.NET", "Test.NET\Test.NET.csproj", "{4E05407C-F7A1-4EE5-8723-6C6FCCD5D276}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeChecker", "DateTimeChecker\DateTimeChecker.csproj", "{3F70A0F8-C9A6-4C0B-BFBE-208DC81D07A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeChecker", "DateTimeChecker\DateTimeChecker.csproj", "{3F70A0F8-C9A6-4C0B-BFBE-208DC81D07A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering", "Ordering\Ordering.csproj", "{8CFE6AE6-73A3-4926-B9A4-40FB7F1115D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nully", "Nully\Nully.csproj", "{1C1D08BB-D062-41B3-920E-829D6C483C2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{3F70A0F8-C9A6-4C0B-BFBE-208DC81D07A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F70A0F8-C9A6-4C0B-BFBE-208DC81D07A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F70A0F8-C9A6-4C0B-BFBE-208DC81D07A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFE6AE6-73A3-4926-B9A4-40FB7F1115D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFE6AE6-73A3-4926-B9A4-40FB7F1115D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFE6AE6-73A3-4926-B9A4-40FB7F1115D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFE6AE6-73A3-4926-B9A4-40FB7F1115D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C1D08BB-D062-41B3-920E-829D6C483C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C1D08BB-D062-41B3-920E-829D6C483C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C1D08BB-D062-41B3-920E-829D6C483C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C1D08BB-D062-41B3-920E-829D6C483C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,6 @@ namespace DateTimeChecker
             return dtDateTime;
         }
 
-        // During user date-time retrieval
         DateTime GetUserDateTime()
         {
             var user = new Tuple<string, DateTime, string>(item1: "dip", item2: DateTime.Now, item3: "Bangladesh Standard Time");
@@ -21,7 +20,6 @@ namespace DateTimeChecker
             return utcDateTime;
         }
 
-        // When user changes his location.
         DateTime ChangeUsersLocation(string destinationSystemTimezoneId)
         {
             var user = new Tuple<string, DateTime, string>(item1: "dip", item2: DateTime.Now, item3: "Bangladesh Standard Time");
@@ -29,9 +27,26 @@ namespace DateTimeChecker
             var utcDateTime = TimeZoneInfo.ConvertTimeToUtc(user.Item2, timezoneInfo);
             var destinationDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, TimeZoneInfo.FindSystemTimeZoneById(destinationSystemTimezoneId));
 
+
+            var destinationDateTime2 = TimeZoneInfo.ConvertTimeFromUtc(
+                TimeZoneInfo.ConvertTimeToUtc(user.Item2, timezoneInfo),
+                TimeZoneInfo.FindSystemTimeZoneById(destinationSystemTimezoneId));
+
             //var destinationDateTimeAlternative = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(user.Item2, destinationSystemTimezoneId);
 
             return destinationDateTime;
+        }
+
+        void AnalyseCulture()
+        {
+            // Culture Analysis
+            var currentDatetime = "2023/01/19 12:21:40";
+            var currentParsedBD = DateTime.Parse(currentDatetime, CultureInfo.GetCultureInfo("en-BD"));
+            var currentParsedInvariant = DateTime.Parse(currentDatetime, CultureInfo.InvariantCulture);
+            //var currentParsedUS = DateTime.Parse(currentDatetime, CultureInfo.GetCultureInfo("en-US"));
+            var currentParsedUS = DateTime.Parse(currentDatetime, CultureInfo.GetCultureInfo("en-AU"));
+
+            var allCultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
         }
 
         void RandomCheck()
@@ -109,6 +124,37 @@ namespace DateTimeChecker
                 // Save systemTimezoneId also
             };
 
+        }
+
+        void OtherCheck()
+        {
+            // WHEN COMPARISON BETWEEN TWO TIME IN SCHEDULER
+
+            // One in LocalTime Input
+            // Other one is current UTC time
+            var localDateTimeNow = "2023/01/20 14:20:00";
+            var ausTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
+
+            //Convert LocalInput to UTC
+
+            // WE HAVE TWO UTC NOW
+
+            // CONVERT BOTH TIME TO LOCAL AND Make comparison.
+
+            // FINALLY
+            // SO ALWAYS KEEP INPUT TIME IN UTC
+            var auslocal = new DateTime(year: 2023, month: 01, day: 20, hour: 14, minute: 20, second: 00, DateTimeKind.Unspecified);
+
+            var utcInServer = DateTime.UtcNow;
+            var utcTolocal = TimeZoneInfo.ConvertTimeFromUtc(utcInServer, ausTimeZoneInfo);
+
+            var ausUtc = TimeZoneInfo.ConvertTimeToUtc(auslocal, ausTimeZoneInfo);
+            var tolocal = TimeZoneInfo.ConvertTimeFromUtc(ausUtc, ausTimeZoneInfo);
+
+
+            var val = utcTolocal.Subtract(tolocal);
+
+            Console.WriteLine("Difference is: {0}", val);
         }
     }
 }
